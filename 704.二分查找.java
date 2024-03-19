@@ -44,19 +44,41 @@
  */
 
 // @lc code=start
+//写法1
+// class Solution {
+//     public int search(int[] nums, int target) {
+//         int left = 0;
+//         int right = nums.length - 1;
+//         while (left <= right){
+//             int middle = left + ((right - left)/2);
+//             if(nums[middle] > target){
+//                 right = middle - 1;
+//             }
+//             else if(nums[middle] < target){
+//                 left = middle + 1;
+//             }
+//             else{ //middle的位置刚好是目标数
+//                 return middle;
+//             }
+//         }
+//         return -1;
+//     }
+// }
+
+//写法2
 class Solution {
     public int search(int[] nums, int target) {
         int left = 0;
-        int right = nums.length - 1;
-        while (left <= right){
+        int right = nums.length;
+        while (left < right){
             int middle = left + ((right - left)/2);
             if(nums[middle] > target){
-                right = middle - 1;
+                right = middle; //由于是闭区间，right = middle
             }
             else if(nums[middle] < target){
                 left = middle + 1;
             }
-            else{
+            else{ //middle的位置刚好是目标数
                 return middle;
             }
         }
